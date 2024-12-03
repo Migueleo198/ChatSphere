@@ -1,0 +1,68 @@
+body {
+    margin: 0;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1e1e2f;
+    color: white;
+    font-family: sans-serif;
+}
+
+.animation-container {
+    overflow: hidden;
+    text-align: center;
+}
+
+.animated-text {
+    font-size: 3rem;
+    opacity: 0;
+    transform: translateY(-20px);  /* Initial position above */
+    animation: fadeSlideIn 2s ease forwards;  /* Use the correct animation */
+}
+
+@keyframes fadeSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-100px);  /* Start off-screen above */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);  /* Ends at normal position */
+    }
+}
+
+/* Form Animation */
+form {
+    margin-top: 30px;
+    opacity: 0;
+    animation: buttonGrow 1s ease 1.4s forwards;  /* Delayed to start after text */
+}
+
+/* Button Styles */
+.continue-button {
+    font-size: 1.5rem;
+    padding: 15px 30px;
+    background-color: #7EA1C4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transform: scale(1);  /* Normal size */
+    transition: background-color 0.3s ease;
+}
+
+.continue-button:hover {
+    background-color: #5B81A3;
+}
+
+@keyframes buttonGrow {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);  /* Start smaller */
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);  /* End at normal size */
+    }
+}

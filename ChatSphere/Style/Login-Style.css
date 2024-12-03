@@ -1,0 +1,185 @@
+/* General Style */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1e1e2f;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+    flex-direction: column;
+}
+
+/* Centered Animation Container */
+.animation-container {
+    overflow: hidden;
+    text-align: center;
+}
+
+/* Animated Text */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    font-size: 3rem;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeSlideIn 2s ease forwards;
+}
+
+@keyframes fadeSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Form and Button Styles */
+form {
+    margin-top: 30px; /* Space below the text */
+    opacity: 0; /* Start hidden */
+    animation: slideInLeft 2s ease forwards; /* Slide-in animation */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px;
+    background-color: #2c2c44;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    max-width: 400px; /* Restrict form width */
+    width: 90%; /* Responsive width */
+}
+
+@keyframes slideInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100vw); /* Start off-screen to the left */
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0); /* End at original position */
+    }
+}
+
+/* Button Styles */
+button {
+    font-size: 1.5rem; /* Increased button size */
+    padding: 10px 20px; /* Larger padding */
+    background-color: #7EA1C4;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transform: scale(1); /* Normal size initially */
+    transition: background-color 0.5s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #5b81a3;
+    transform: scale(1.05); /* Slight scaling effect on hover */
+}
+
+@keyframes buttonGrow {
+    0% {
+        opacity: 0;
+        transform: scale(0.5); /* Start small */
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1); /* End at normal size */
+    }
+}
+
+/* Footer Style (Optional) */
+footer {
+    margin-top: auto;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 14px;
+    background: linear-gradient(45deg, #43436D, #3A3A52);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: #bbb;
+}
+
+footer a {
+    color: #9FA3C4;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+a:visited{
+    color:none;
+    text-decoration:none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Link to toggle between Login/Register */
+p a {
+    color: #7EA1C4;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+/* Adjusted Form Containers */
+#loginFormContainer, #registerFormContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+#loginFormContainer {
+    display: block;
+}
+
+#registerFormContainer {
+    display: none; /* Hide register form by default */
+}
+
+/* Form Input Fields */
+input[type="text"], input[type="email"], input[type="password"] {
+    font-size: 1.2rem;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #7EA1C4;
+    border-radius: 5px;
+    background-color: #3a3a52;
+    color: white;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+    outline: none;
+    border-color: #5b81a3;
+}
+
+/* Adjusted Animation Speed for Forms */
+@keyframes slideInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100vw); /* Start off-screen to the left */
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0); /* End at original position */
+    }
+}
+
