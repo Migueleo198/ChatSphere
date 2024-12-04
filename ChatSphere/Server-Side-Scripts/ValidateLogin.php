@@ -9,30 +9,30 @@ header('Access-Control-Allow-Headers: Content-Type');
 
 // Check if the request method is POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $idUser = htmlspecialchars(trim($_POST['user'] ?? ''));
+    $username = htmlspecialchars(trim($_POST['user'] ?? ''));  // Change from idUser to username
     $passUser = htmlspecialchars(trim($_POST['pass'] ?? ''));
 
     // Initialize error array
-    $errores = [];
+    $errors = [];
 
     // Validate username format (alphanumeric only)
-    if (!preg_match('/^[A-Za-z0-9]+$/', $idUser)) {
-        $errores[] = "Username contains invalid characters.";
+    if (!preg_match('/^[A-Za-z0-9]+$/', $username)) {
+        $errors[] = "Username contains invalid characters.";
     }
 
     // Validate password format (min 3 characters)
     if (!preg_match('/^.{3,50}$/', $passUser)) {
-        $errores[] = "Password contains invalid characters.";
+        $errors[] = "Password must be between 3 and 50 characters.";
     }
 
     // If no validation errors, proceed to check user in the database
-    if (empty($errores)) {
+    if (empty($errors)) {
         // SQL query to get user data based on the provided username
-        $sql = "SELECT * FROM user WHERE id_user = :idUser";
+        $sql = "SELECT * FROM user WHERE username = :username";  // Updated to use username
         $stmt = $connection->prepare($sql);
-        $stmt->bindParam(':idUser', $idUser, PDO::PARAM_STR);
-        $stmt->execute();
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR);  // Updated binding
 
+        $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user) {
@@ -43,9 +43,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             // Verify the password using password_verify() if passwords are hashed
-            if ($passUser == $user['passwd']) {
+            if (password_verify($passUser, $user['passwd'])) {
                 // Determine the page based on user type
-                $url = ($user['user_type'] == 1) ? './adminPage.html' : './userPage.html';
+                $url = ($user['user_type'] == 1) ? './adminPage.html' : './chat.html';
 
                 // Set cookies for user session
                 setcookie('emailUser', $user['email'], [
@@ -77,6 +77,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'samesite' => 'Lax'
                 ]);
 
+                setcookie('userName', $user['username'], [
+                    'expires' => time() + 3600 * 24 * 30,
+                    'path' => '/',
+                    'secure' => isset($_SERVER['HTTPS']),
+                    'httponly' => false, // Allow JavaScript to access the cookie
+                    'samesite' => 'Lax'
+                ]);
+                
+
                 // Return success response
                 echo json_encode(['status' => true, 'message' => 'Welcome ' . $user['name'], 'url' => $url]);
                 exit;
@@ -92,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     } else {
         // Return validation errors
-        echo json_encode(['status' => false, 'error' => 'Validation errors.', 'errors' => $errores]);
+        echo json_encode(['status' => false, 'error' => 'Validation errors.', 'errors' => $errors]);
         exit;
     }
 } else {
