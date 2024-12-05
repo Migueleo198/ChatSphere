@@ -9,14 +9,20 @@
     <link rel="stylesheet" href="Style/Login-Style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Slab:wght@100..900&display=swap"
+        rel="stylesheet">
+        <script src="Client-Side-Scripts/checkLanguageCookies.js"></script>
 </head>
 
 <body>
-    <h2>Register</h2>
-
+    <h1>Register</h1>
+    <div class="animation-container">
+        <img class="animated-text" src="Media/logo-definitive-removebg-preview.png"></img>
+    </div>
     <div class="form">
-        <form id="registerForm" method="POST" action="Server-Side-Scripts/handleRegistration.php" onsubmit="return validateForm(this);">
+        <form id="registerForm" method="POST" action="Server-Side-Scripts/handleRegistration.php"
+            onsubmit="return validateForm(this);">
             <label for="user">Username:</label>
             <input type="text" id="user" name="user" required><br><br>
 
@@ -36,14 +42,14 @@
         </form>
     </div>
 
-   
-    <p>Already have an Account? <a href="login.html">Login here</a></label><br>
-       
-    </div>
 
-    <script type="module">
-        import { validateForm } from './Client-Side-Scripts/validate.js'; // Importing the JS file for validation
-    </script>
+    <p>Already have an Account? <a href="login.html">Login here</a></label><br>
+
+        </div>
+
+        <script type="module">
+            import { validateForm } from './Client-Side-Scripts/validate.js'; // Importing the JS file for validation
+        </script>
 
 </body>
 

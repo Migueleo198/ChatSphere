@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Verify the password using password_verify() if passwords are hashed
             if (password_verify($passUser, $user['passwd'])) {
                 // Determine the page based on user type
-                $url = ($user['user_type'] == 1) ? './adminPage.html' : './chat.html';
+                $url = ($user['user_type'] == 1) ? './chat.html' : './chat.html';
 
                 // Set cookies for user session
                 setcookie('emailUser', $user['email'], [
@@ -84,6 +84,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'httponly' => false, // Allow JavaScript to access the cookie
                     'samesite' => 'Lax'
                 ]);
+
+                
                 
 
                 // Return success response
