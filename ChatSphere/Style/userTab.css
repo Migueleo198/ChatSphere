@@ -9,8 +9,8 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 20px; /* Adjust position to avoid VH scaling */
-    right: 20px;
+    top:10vh; /* Adjust position to avoid VH scaling */
+    right: 7vw;
     background-image: url(../Media/logoUsuario.png);
     background-size: cover;
     background-position: center;

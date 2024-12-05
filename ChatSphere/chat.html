@@ -7,21 +7,65 @@
     <title>Chat Room</title>
     <link rel="stylesheet" href="Style/chat.css">
     <script src="Client-Side-Scripts/chat.js" defer></script>
-    <link rel="stylesheet" href="Style/userTab.css"></link>
+    <script src="Client-Side-Scripts/invite.js" defer></script>
+    <link rel="stylesheet" href="Style/userTab.css">
 </head>
 
 <body>
+    <!-- Mails Tab -->
+    <!-- Mails Tab -->
+    <div class="mails-tab">
+        <button id="showMailsBtn">
+            MailBox
+            <div id="messageCountBadge" class="badge"></div> <!-- Message count badge -->
+        </button>
+        <div id="mailsList" class="mails-list" style="display:none;">
+            <ul>
+                <div id="invite-container"></div>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Invite User Section -->
+    <div class="invite-user">
+        <h3>Invite a User to Selected Server</h3>
+        <input type="text" id="inviteUserName" placeholder="Enter username to invite" />
+        <button id="inviteUserBtn">Send Invite</button>
+    </div>
+
     <div class="chat-container">
         <div class="chat-header">
             <h2>Chat Room</h2>
-            <h3>Welcome, <span id="username">Guest</span>!</h3> <!-- Display user's name -->
+            <h3>Welcome, <span id="username">Guest</span>!</h3>
         </div>
+
+        <!-- Server Selection Dropdown -->
+        <div class="server-selection">
+            <label for="serverSelect">Select Server:</label>
+            <select id="serverSelect">
+                <!-- Servers will be dynamically populated here -->
+            </select>
+            <button id="createServerBtn">Create New Server</button>
+        </div>
+
+        <!-- Create Server Modal -->
+        <div id="createServerModal" style="display: none;">
+            <h3>Create a New Server</h3>
+            <input type="text" id="newServerName" placeholder="Enter server name" />
+            <button id="submitCreateServerBtn">Create Server</button>
+            <button id="cancelCreateServerBtn">Cancel</button>
+        </div>
+
         <div class="chat-area" id="chat-area">
             <!-- Messages will be displayed here -->
         </div>
+
         <div class="chat-input">
-            <input type="text" id="messageInput" placeholder="Type a message..." />
-            <button id="sendMessageBtn">Send</button> <!-- Button without inline onClick -->
+           
+            
+            <input type="text" id="messageInput" placeholder="Type a message..." >
+            <button type="submit" id="sendMessageBtn" >Send</button>
+           
         </div>
     </div>
 
@@ -29,28 +73,61 @@
         import { createMenuLog } from './Client-Side-Scripts/menu.js';
         createMenuLog();
     </script>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const userTab = document.getElementById('userTab');
             const userMenu = document.getElementById('userMenu');
-        
+            const showMailsBtn = document.getElementById('showMailsBtn');
+            const mailsList = document.getElementById('mailsList');
+
             userTab.addEventListener('click', () => {
-                // Toggle the 'visible' class on click
                 userMenu.classList.toggle('visible');
             });
-        
+
             // Close the menu if clicked outside
             document.addEventListener('click', (e) => {
                 if (!userTab.contains(e.target) && !userMenu.contains(e.target)) {
                     userMenu.classList.remove('visible');
                 }
             });
+
+            // Toggle mails visibility
+            showMailsBtn.addEventListener('click', () => {
+                mailsList.style.display = mailsList.style.display === 'none' ? 'block' : 'none';
+            });
+
+            // Accept invite functionality (example)
+            const acceptInviteBtn = document.querySelector('.acceptInvite');
+            if (acceptInviteBtn) {
+                acceptInviteBtn.addEventListener('click', () => {
+                    alert('Invite Accepted');
+                    // Add logic to handle invite acceptance here
+                });
+            }
+
+           
+
+       
+          
+
+           
         });
-        </script>
-        
-  
+    </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Assuming the username is already displayed or you have a way to get the username
+        const username = document.getElementById("username").textContent.trim();
+
+        // Load the servers for the current user
+        loadServers(username);
+
+        // Other event listeners and functionality (e.g., send message, show mails, etc.)
+    });
+</script>
+
+
 </body>
 
 </html>
-
-
