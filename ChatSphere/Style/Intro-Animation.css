@@ -48,6 +48,7 @@ form {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    z-index:1;
     transform: scale(1);  /* Normal size */
     transition: background-color 0.3s ease;
 }

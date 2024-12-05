@@ -2,6 +2,7 @@
 body {
     margin: 0;
     height: 100vh;
+    width:100vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,34 +13,34 @@ body {
     flex-direction: column;
 }
 
-/* Centered Animation Container */
+/* Animation Container */
 .animation-container {
     overflow: hidden;
-    text-align: center;
+  
+    text-align: left; /* Align text to the left */
+    position: absolute; /* Position it absolutely to the left side */
+    left: 0; /* Align to the left edge */
+    padding: 20px; /* Optional: Add padding to the left */
+    
 }
 
-/* Animated Text */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    margin: 0;
-    font-size: 3rem;
+/* Animated Text - Keep it still after dropping down */
+.animated-text {
+   
+margin-left:10vh;
     opacity: 0;
-    transform: translateY(-20px);
-    animation: fadeSlideIn 2s ease forwards;
+    animation: logoAppear 2s ease forwards;
+    animation-delay: 2s; /* Delay logo appearance until form animation ends */
 }
 
 @keyframes fadeSlideIn {
     0% {
         opacity: 0;
-        transform: translateY(-100px);
+        transform: translateY(-100px); /* Start small and above */
     }
     100% {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0); /* End at normal size and original position */
     }
 }
 
@@ -70,6 +71,23 @@ form {
     }
 }
 
+/* Logo Animation (Delayed appearance) */
+h1 {
+    font-size: 3rem;
+    opacity: 0;
+    transform: translateY(-20px); /* Initial position above */
+    animation: fadeSlideIn 2s ease forwards; /* Use the correct animation */ 
+}
+
+@keyframes logoAppear {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1; /* Make the logo visible */
+    }
+}
+
 /* Button Styles */
 button {
     font-size: 1.5rem; /* Increased button size */
@@ -86,17 +104,6 @@ button {
 button:hover {
     background-color: #5b81a3;
     transform: scale(1.05); /* Slight scaling effect on hover */
-}
-
-@keyframes buttonGrow {
-    0% {
-        opacity: 0;
-        transform: scale(0.5); /* Start small */
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1); /* End at normal size */
-    }
 }
 
 /* Footer Style (Optional) */
@@ -116,9 +123,9 @@ footer a {
     margin: 0 10px;
 }
 
-a:visited{
-    color:none;
-    text-decoration:none;
+a:visited {
+    color: none;
+    text-decoration: none;
 }
 
 footer a:hover {
@@ -182,4 +189,3 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
         transform: translateX(0); /* End at original position */
     }
 }
-
