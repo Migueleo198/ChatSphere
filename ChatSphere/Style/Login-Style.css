@@ -25,7 +25,7 @@ body {
 }
 
 /* Animated Text - Keep it still after dropping down */
-.animated-text {
+a .animated-text {
    
 margin-left:10vh;
     opacity: 0;
