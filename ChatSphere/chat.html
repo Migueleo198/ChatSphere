@@ -7,6 +7,7 @@
     <title>Chat Room</title>
     <link rel="stylesheet" href="Style/chat.css">
     <script src="Client-Side-Scripts/chat.js" defer></script>
+    <link rel="stylesheet" href="Style/userTab.css"></link>
 </head>
 
 <body>
@@ -23,6 +24,33 @@
             <button id="sendMessageBtn">Send</button> <!-- Button without inline onClick -->
         </div>
     </div>
+
+    <script type="module">
+        import { createMenuLog } from './Client-Side-Scripts/menu.js';
+        createMenuLog();
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const userTab = document.getElementById('userTab');
+            const userMenu = document.getElementById('userMenu');
+        
+            userTab.addEventListener('click', () => {
+                // Toggle the 'visible' class on click
+                userMenu.classList.toggle('visible');
+            });
+        
+            // Close the menu if clicked outside
+            document.addEventListener('click', (e) => {
+                if (!userTab.contains(e.target) && !userMenu.contains(e.target)) {
+                    userMenu.classList.remove('visible');
+                }
+            });
+        });
+        </script>
+        
+  
 </body>
 
 </html>
+
+
