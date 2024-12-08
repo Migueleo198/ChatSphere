@@ -9,7 +9,7 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    top:10vh; /* Adjust position to avoid VH scaling */
+    top: 10vh; /* Adjust position to avoid VH scaling */
     right: 7vw;
     background-image: url(../Media/logoUsuario.png);
     background-size: cover;
@@ -17,10 +17,36 @@
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
     transition: transform 0.3s ease;
+    z-index: 999;
+    animation: fadeSlideIn 2s ease forwards, scaleIn 1s ease forwards; /* Added scale-in animation */
 }
 
+/* Hover effect for user tab */
 #userTab:hover {
     transform: scale(1.1); /* Interactive feedback */
+    z-index: 999;
+}
+
+/* Keyframes for fadeSlideIn animation */
+@keyframes fadeSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-100px);  /* Start off-screen above */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);  /* Ends at normal position */
+    }
+}
+
+/* Added scale-in effect for user tab */
+@keyframes scaleIn {
+    0% {
+        transform: scale(0.8); /* Start smaller */
+    }
+    100% {
+        transform: scale(1); /* Ends at normal size */
+    }
 }
 
 /* User Menu Container */
@@ -41,10 +67,25 @@
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
+/* User Menu Visible State */
 #userMenu.visible {
     display: block;
     opacity: 1;
     transform: translateY(0);
+    z-index: 1000;
+    animation: slideIn 0.3s ease-out forwards; /* Slide in animation for menu */
+}
+
+/* Keyframes for the slide-in animation */
+@keyframes slideIn {
+    0% {
+        transform: translateY(20px); /* Start slightly lower */
+        opacity: 0; /* Initially hidden */
+    }
+    100% {
+        transform: translateY(0); /* Slide into place */
+        opacity: 1; /* Make it fully visible */
+    }
 }
 
 /* User Menu List */
@@ -54,6 +95,7 @@
     margin: 0;
 }
 
+/* List Items in User Menu */
 #userMenu ul li {
     padding: 12px;
     margin: 5px 0;
@@ -62,11 +104,13 @@
     border-radius: 8px;
     text-align: center;
     color: white;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
+/* Hover effect for list items */
 #userMenu ul li:hover {
     background-color: #7EA1C4;
+    transform: translateX(5px); /* Slight slide to the right */
 }
 
 /* Special Logout Item */
@@ -75,6 +119,7 @@
     font-weight: bold;
 }
 
+/* Hover effect for logout */
 #userMenu #desconect:hover {
     background-color: #ff3b3b;
     color: white;
@@ -87,8 +132,10 @@
     display: block;
 }
 
+/* Hover effect for links */
 #userMenu a:hover {
     text-decoration: underline;
+    z-index: 1000;
 }
 
 /* Responsive Grid for Other Menus */
@@ -132,6 +179,8 @@ ul > li > ul {
 ul > li:hover > ul {
     display: block;
 }
+
+
 
 ul > li > ul > li {
     padding: 8px;

@@ -49,41 +49,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // Set cookies for user session
                 setcookie('emailUser', $user['email'], [
-                    'expires' => time() + 3600 * 24 * 30,
+                    'expires' => time() + 3600 * 24 * 30, // 30 days expiration
                     'path' => '/',
-                    'secure' => isset($_SERVER['HTTPS']),
-                    'httponly' => true,
-                    'samesite' => 'Lax'
+                    'secure' => isset($_SERVER['HTTPS']), // Only set cookie over HTTPS
+                    'httponly' => false,  // Allow JavaScript to access the cookie
+                    'samesite' => 'Lax'   // Ensures the cookie is sent with cross-site requests, but only from the same origin
                 ]);
-
+                
                 setcookie('userType', $user['user_type'], [
                     'expires' => time() + 3600 * 24 * 30,
                     'path' => '/',
                     'secure' => isset($_SERVER['HTTPS']),
-                    'httponly' => true,
+                    'httponly' => false,
                     'samesite' => 'Lax'
                 ]);
-
-                // Store session variables
-                $_SESSION['userName'] = $user['username'];
-                $_SESSION['userId'] = $user['id_user'];
-                $_SESSION['email'] = $user['email'];
-
+                
                 setcookie('userId', $user['id_user'], [
                     'expires' => time() + 3600 * 24 * 30,
                     'path' => '/',
                     'secure' => isset($_SERVER['HTTPS']),
-                    'httponly' => true,
+                    'httponly' => false,
                     'samesite' => 'Lax'
                 ]);
-
+                
                 setcookie('userName', $user['username'], [
                     'expires' => time() + 3600 * 24 * 30,
                     'path' => '/',
                     'secure' => isset($_SERVER['HTTPS']),
-                    'httponly' => false, // Allow JavaScript to access the cookie
+                    'httponly' => false,  // Allow JavaScript to access this cookie
                     'samesite' => 'Lax'
                 ]);
+                
 
                 
                 

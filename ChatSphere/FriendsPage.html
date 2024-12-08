@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friends Page</title>
+    <link rel="stylesheet" href="Style/friendList.css">
+    <script src="Client-Side-Scripts/friends.js" defer></script>
+    <script src="Client-Side-Scripts/loadFriendRequests.js" defer ></script>
+    <script src="Client-Side-Scripts/friend_requests.js"></script>
+
+</head>
+
+<body>
+  
+    <div class="friends-page">
+        
+        <!-- Sidebar for Friends List -->
+        <aside class="friends-list" aria-label="Friends List">
+            <div class="friend-mailbox-button">
+                <button id="toggleMailboxBtn" aria-label="Toggle Friend Requests">📬 Requests <div id="messageCountBadge" class="badge">0</div> <!-- Message count badge --></button>
+            </div>
+            <br>
+            <label for="searchFriends"><strong>Search for friends</strong></label>
+            <!-- Search Bar for Friends -->
+            <div class="friend-search">
+               <input type="text" id="searchFriends" placeholder="Search for friends..." aria-label="Search for friends" />
+               <button id="searchFriendsBtn" aria-label="Search">Add Friend</button>
+            </div>
+
+            <h2>Friends</h2>
+            <ul id="friendListItems" role="list">
+                <!-- Friends will be dynamically populated here -->
+            </ul>
+        </aside>
+
+        <!-- Hidden Friend Mailbox Section -->
+        <section class="friend-mailbox" id="friendMailbox" aria-label="Friend Mailbox" style="display: none;">
+            <h2>Incoming Friend Requests</h2>
+            <ul id="friendRequestList" role="list">
+                <!-- Incoming friend requests will appear here dynamically -->
+            </ul>
+        </section>
+
+        <!-- Chat Area for Private Messages -->
+        <section class="private-chat" aria-label="Private Chat Area">
+            <!-- Close Button -->
+            <button class="close-btn" onclick="window.location.href='chat.html'" aria-label="Close Chat">✖</button>
+
+            <header class="chat-header">
+                <h2 id="chatFriendName">Select a Friend</h2>
+            </header>
+
+            <div class="chat-area" id="privateChatArea" role="log" aria-live="polite" aria-relevant="additions">
+                <!-- Private messages will appear here -->
+            </div>
+
+            <div class="chat-input">
+                <input type="text" id="privateMessageInput" placeholder="Type a message..." aria-label="Type a message" />
+                <button id="sendPrivateMessageBtn" aria-label="Send Message">Send</button>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>

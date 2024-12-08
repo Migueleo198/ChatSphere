@@ -26,11 +26,19 @@
         </div>
     </div>
 
+   
+    
+
     <!-- Invite User Section -->
     <div class="invite-user">
         <h3>Invite a User to Selected Server</h3>
         <input type="text" id="inviteUserName" placeholder="Enter username to invite" />
         <button id="inviteUserBtn">Send Invite</button>
+    </div>
+
+    <div id="friendList">
+        <h3>Friend List</h3>
+        <button id="friendlistBtn">Manage Friends</button>
     </div>
 
     <div class="chat-container">
@@ -125,6 +133,13 @@
 
         // Other event listeners and functionality (e.g., send message, show mails, etc.)
     });
+
+    const BUTTON_FRIENDLIST=  document.querySelector('#friendlistBtn');
+    BUTTON_FRIENDLIST.addEventListener('click',sendToFriendsPage);
+
+    function sendToFriendsPage(event){
+     window.location.href = 'FriendsPage.html';
+    }
 </script>
 
 
